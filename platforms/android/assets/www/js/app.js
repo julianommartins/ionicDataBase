@@ -20,7 +20,7 @@ var starter = angular.module('starter', ['ionic', 'ngCordova'])
 })
 
 starter.controller('DBController', function($scope, $cordovaSQLite) {
-  
+    
     $scope.resultado = "";
     $scope.peopleList = [];
     
@@ -33,6 +33,8 @@ starter.controller('DBController', function($scope, $cordovaSQLite) {
         }, function(error){
             $scope.resultado = "Insert FAIL!";
         });
+        $scope.lstName = "";
+        $scope.fsName = "";
     }
     
     $scope.select = function(lastname){
@@ -50,6 +52,7 @@ starter.controller('DBController', function($scope, $cordovaSQLite) {
     }
     
     $scope.selectAll = function(){
+        $scope.peopleList = [];
         var query = "select firstname, lastname from pessoas";
         $cordovaSQLite.execute(db,query,[]).then(function(result) {
             if(result.rows.length > 0){
@@ -83,6 +86,16 @@ starter.controller('DBController', function($scope, $cordovaSQLite) {
             $scope.resultado = "Update OK.";
         }, function(error){
             $scope.resultado = "Update FAIL!";
+        });
+    }
+     
+    $scope.deleteAll = function() {
+        $scope.peopleList = [];
+        var query = "delete from pessoas";
+        $cordovaSQLite.execute(db,query,[]).then(function(result) {
+            $scope.resultado = "Delete Ok.";
+        }, function(error){
+            $scope.resultado = "Delete FAIL!";
         });
     }
     

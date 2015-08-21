@@ -14,11 +14,10 @@
 <body ng-app="starter" class="platform-android platform-cordova platform-webview">
     <ion-pane ng-controller="DBController">
         <ion-header-bar class="bar-positive">
-            <h1 class="title">Pessoas</h1>
+            <h1 class="title">People List</h1>
         </ion-header-bar>
         
         <ion-content>
-            <div class="list">
               <label class="item item-input item-floating-label">
                 <span class="input-label">First Name</span>
                 <input type="text" placeholder="First Name" data-ng-model="fsName">
@@ -31,23 +30,18 @@
               <button class="button button-positive" ng-click="insert(fsName,lstName)">Insert</button>
               <button class="button button-energized" ng-click="update(fsName,lstName)">Update</button>
               <button class="button button-royal" ng-click="selectAll()">List</button>
+              <button class="button button-assertive" ng-click="deleteAll()">Delete All</button>
               <label class="item item-input">
                 <input type="text" readonly value="{{resultado}}">
               </label>
                 
               <ion-list>
                 <ion-item ng-repeat="people in peopleList">
-                    {{people.firstname}} - {{people.lastname}}
+                    {{people.firstname}} {{people.lastname}}
                     <ion-option-button class="button-assertive icon ion-trash-a" ng-click='delete(people.lastname)'></ion-option-button>
                 </ion-item>
               </ion-list>
-                                
-            </div>
         </ion-content>
-        
-        <ion-footer-bar class="bar-positive">
-            <h1 class="title">Pessoas</h1>
-        </ion-footer-bar>
         
     </ion-pane>
 </body>
