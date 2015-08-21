@@ -28,13 +28,10 @@ starter.controller('DBController', function($scope, $cordovaSQLite) {
         $scope.peopleList = [];
         var query = "insert into pessoas (firstname, lastname) values (?,?)";
         $cordovaSQLite.execute(db,query,[firstname,lastname]).then(function(result) {
-            //$scope.resultado.push({mensagem: "Insert Ok"});
             $scope.resultado = "Insert OK.";
         }, function(error){
             $scope.resultado = "Insert FAIL!";
         });
-        $scope.lstName = "";
-        $scope.fsName = "";
     }
     
     $scope.select = function(lastname){
