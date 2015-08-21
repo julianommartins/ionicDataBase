@@ -5,26 +5,43 @@
     <title>DB Example</title>
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <!-- cordova script (this will be a 404 during development) -->
     <script src="js/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
-    <!-- your app's js -->
     <script src="js/app.js"></script>
 </head>
 
 <body ng-app="starter" class="platform-android platform-cordova platform-webview">
-    <ion-pane>
-        <ion-header-bar class="bar-stable">
+    <ion-pane ng-controller="DBController">
+        <ion-header-bar class="bar-positive">
             <h1 class="title">Pessoas</h1>
         </ion-header-bar>
-        <ion-content ng-controller="DBController">
-            <button class="button" ng-click="insert('Juliano','Martins')">Insert</button>
-            <button class="button" ng-click="select('Martins')">Select</button>
-            Resultado: {{mensagemFinal}}
-            Resultado: {{resultado}}
+        
+        <ion-content>
+        
+            <div class="list">
+              <label class="item item-input item-floating-label">
+                <span class="input-label">First Name</span>
+                <input type="text" placeholder="First Name" data-ng-model="fsName">
+              </label>
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Last Name</span>
+                <input type="text" placeholder="Last Name" data-ng-model="lstName">
+              </label>
+              <button class="button button-balanced" ng-click="select(lstName)">Select</button>
+              <button class="button button-positive" ng-click="insert(fsName,lstName)">Insert</button>
+              <button class="button button-energized" ng-click="delete(lstName)">Delete</button>
+              <button class="button button-assertive" ng-click="update(fsName,lstName)">Update</button>
+              <label class="item item-input">
+                <input type="text" readonly value="{{resultado}}">
+              </label>
+            </div>
+            
         </ion-content>
+        
+        <ion-footer-bar class="bar-positive">
+            <h1 class="title">Pessoas</h1>
+        </ion-footer-bar>
         
     </ion-pane>
 </body>

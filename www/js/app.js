@@ -21,19 +21,15 @@ var starter = angular.module('starter', ['ionic', 'ngCordova'])
 
 starter.controller('DBController', function($scope, $cordovaSQLite) {
   
-    $scope.resultado = [];
-    $scope.mensagemFinal = "Iniciou Sistema";
+    $scope.resultado = "";
     
     $scope.insert = function(firstname, lastname) {
         var query = "insert into pessoas (firstname, lastname) values (?,?)";
         $cordovaSQLite.execute(db,query,[firstname,lastname]).then(function(result) {
-            $scope.mensagemFinal = "FOI";
-            $scope.resultado.push({mensagem: "Insert Ok"});
-            console.log("Insert ID -> " + result.insertId);
+            //$scope.resultado.push({mensagem: "Insert Ok"});
+            $scope.resultado = "Insert Ok";
         }, function(error){
-            $scope.resultado.push({mensagem: "insert Fail"});
-            $scope.mensagemFinal = "Fail";
-            console.log(error);
+            $scope.resultado = "Insert FAIL";
         });
     }
     
@@ -41,13 +37,9 @@ starter.controller('DBController', function($scope, $cordovaSQLite) {
         var query = "select firstname, lastname from pessoas where lastname = ?";
         $cordovaSQLite.execute(db,query,[lastname]).then(function(result) {
             if(result.rows.length > 0){
-                $scope.mensagemFinal = "ACHEI";
-                $scope.resultado = result.rows.item(0).firstname;
-                console.log("Achei " + result.rows.item(0).firstname + " " + result.rows.item(0).lastname);
+                $scope.resultado = result.rows.item(0).firstname + " found with this last name.";
             } else {
-                $scope.mensagemFinal = "NAO ACHEI";
-                $scope.resultado = [];
-                console.log("Nao achei");
+                $scope.resultado = "Not found";
             }
             
         }, function(error){
