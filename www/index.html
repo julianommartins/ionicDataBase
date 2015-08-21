@@ -18,7 +18,6 @@
         </ion-header-bar>
         
         <ion-content>
-        
             <div class="list">
               <label class="item item-input item-floating-label">
                 <span class="input-label">First Name</span>
@@ -30,13 +29,20 @@
               </label>
               <button class="button button-balanced" ng-click="select(lstName)">Select</button>
               <button class="button button-positive" ng-click="insert(fsName,lstName)">Insert</button>
-              <button class="button button-energized" ng-click="delete(lstName)">Delete</button>
-              <button class="button button-assertive" ng-click="update(fsName,lstName)">Update</button>
+              <button class="button button-energized" ng-click="update(fsName,lstName)">Update</button>
+              <button class="button button-royal" ng-click="selectAll()">List</button>
               <label class="item item-input">
                 <input type="text" readonly value="{{resultado}}">
               </label>
+                
+              <ion-list>
+                <ion-item ng-repeat="people in peopleList">
+                    {{people.firstname}} - {{people.lastname}}
+                    <ion-option-button class="button-assertive icon ion-trash-a" ng-click='delete(people.lastname)'></ion-option-button>
+                </ion-item>
+              </ion-list>
+                                
             </div>
-            
         </ion-content>
         
         <ion-footer-bar class="bar-positive">
