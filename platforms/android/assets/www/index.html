@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>DB Example</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>DB CRUD Example</title>
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -17,7 +18,7 @@
             <h1 class="title">People List</h1>
         </ion-header-bar>
         
-        <ion-content>
+        <ion-content class="has-header" scroll="false" padding="true">
               <label class="item item-input item-floating-label">
                 <span class="input-label">First Name</span>
                 <input type="text" placeholder="First Name" data-ng-model="fsName">
@@ -26,21 +27,26 @@
                 <span class="input-label">Last Name</span>
                 <input type="text" placeholder="Last Name" data-ng-model="lstName">
               </label>
-              <button class="button button-balanced" ng-click="select(lstName)">Select</button>
-              <button class="button button-positive" ng-click="insert(fsName,lstName)">Insert</button>
-              <button class="button button-energized" ng-click="update(fsName,lstName)">Update</button>
-              <button class="button button-royal" ng-click="selectAll()">List</button>
-              <button class="button button-assertive" ng-click="deleteAll()">Delete All</button>
+              <div class="button-bar" class="hide-on-keyboard-open">
+                  <a class="button button-balanced" ng-click="select(lstName)">Search</a>
+                  <a class="button button-positive" ng-click="insert(fsName,lstName)">+</a>
+                  <a class="button button-energized" ng-click="update(fsName,lstName)">Upd</a>
+                  <a class="button button-royal" ng-click="selectAll()">List</a>
+                  <a class="button button-assertive" ng-click="deleteAll()">X</a>
+              </div>
+            
               <label class="item item-input">
                 <input type="text" readonly value="{{resultado}}">
               </label>
                 
+            <div class="hide-on-keyboard-open">
               <ion-list>
                 <ion-item ng-repeat="people in peopleList">
-                    {{people.firstname}} {{people.lastname}}
+                    {{people.firstname | uppercase}} {{people.lastname | uppercase}}
                     <ion-option-button class="button-assertive icon ion-trash-a" ng-click='delete(people.lastname)'></ion-option-button>
                 </ion-item>
               </ion-list>
+            </div>
         </ion-content>
         
     </ion-pane>

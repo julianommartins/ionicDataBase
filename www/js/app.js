@@ -20,7 +20,6 @@ var starter = angular.module('starter', ['ionic', 'ngCordova'])
 })
 
 starter.controller('DBController', function($scope, $cordovaSQLite) {
-    
     $scope.resultado = "";
     $scope.peopleList = [];
     
@@ -49,6 +48,7 @@ starter.controller('DBController', function($scope, $cordovaSQLite) {
     }
     
     $scope.selectAll = function(){
+        console.log($scope.fsName);
         $scope.peopleList = [];
         var query = "select firstname, lastname from pessoas";
         $cordovaSQLite.execute(db,query,[]).then(function(result) {
@@ -64,6 +64,7 @@ starter.controller('DBController', function($scope, $cordovaSQLite) {
         }, function(error){
             console.log(error);
         });
+        $scope.fsName = "";
     }
     
     $scope.delete = function(lastname) {
