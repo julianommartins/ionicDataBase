@@ -79,6 +79,7 @@ starter.controller('DBController', function($scope, $cordovaSQLite) {
     
      $scope.update = function(firstname, lastname) {
         $scope.peopleList = [];
+         console.log("Vou fazer update");
         var query = "update pessoas set firstname = ? where lastname = ?";
         $cordovaSQLite.execute(db,query,[firstname,lastname]).then(function(result) {
             $scope.resultado = "Update OK.";
